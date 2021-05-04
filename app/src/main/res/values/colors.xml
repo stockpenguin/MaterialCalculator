@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="lightPurplePrimary">#7d5dfe</color>
+    <color name="lightPurpleAccent">#2e2c37</color>
+    <color name="darkPurplePrimary">#2e2c37</color>
+    <color name="darkPurpleAccent">#7d5dfe</color>
+    <color name="lightNormalPrimary">#ffffff</color>
+    <color name="lightNormalAccent">#000000</color>
+    <color name="darkNormalPrimary">#000000</color>
+    <color name="darkNormalAccent">#ffffff</color>
+    <color name="lightRedPrimary">#ff6961</color>
+    <color name="lightRedAccent">#b80f0a</color>
+    <color name="darkRedPrimary">#b80f0a</color>
+    <color name="darkRedAccent">#ff6961</color>
 </resources>
