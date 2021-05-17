@@ -6,73 +6,69 @@ import android.os.Build;
 import androidx.appcompat.app.AppCompatActivity;
 
 /*
-The ThemeManager class provides the ability to be able to dynamically change the themes.
--
-It is a singleton class.
+The ThemeManager class provides the ability to be able to dynamically change the themes
+
+It was initially designed to be a singleton class, however the need to access SharedPreferences of the
+CalculatorActivity class is why it is not
  */
 
-public class ThemeManager extends AppCompatActivity {
+public class ThemeManager {
     /*
-    Due to the fact that this is a singleton, we have a recursive variable for the one and only instance of this class.
-    -
-    The String SP_KEY is short for "SharedPreferences Key". The ThemeManager uses SharedPreferences to store and load
-    the current theme that the user has selected.
-    -
-    Using a Theme enumeration class, we set the default theme to the DarkPurple theme.
+    Constant variables
+
+    SP_KEY is short for "SharedPreferences Key", simply used to access the SharedPreferences
+    to read/write the saved theme
+
+    DEFAULT_THEME is the default theme of the calculator, which is DARK_PURPLE
      */
-    private static ThemeManager instance;
-    private final String SP_KEY = "CURRENT_THEME";
-    private final Theme DEFAULT_THEME = Theme.DARK_PURPLE;
+    private static final String SP_KEY = "CURRENT_THEME";
+    public static final Theme DEFAULT_THEME = Theme.DARK_PURPLE;
 
     /*
-    We will use the currentTheme variable to keep track of the currentTheme.
-    -
-    We initially set it to DarkPurple, however the output of the loadTheme method will set this in the constructor.
+    We will use the currentTheme variable to keep track of the currentTheme (duh)
+
+    DarkPurple is the default theme, however calling loadTheme() from the constructor will set it to whatever is saved
+    in the SharedPreferences variable
+
+    context is the reference to the passed context, it is necessary in order to access the SharedPreferences
+
+    sp is a global variable of the context's SharedPreferences
      */
     private Theme currentTheme;
+    private final Context context;
 
     /*
-    Since I want the ThemeManager to be a singleton class, the constructor is private. All it does is load the current
-    theme that is saved in the SharedPreferences.
+    constructor
      */
-    private ThemeManager() {
+    public ThemeManager(Context context) {
+        this.context = context;
         currentTheme = loadTheme();
     }
 
     /*
-    getInstance() method to acquire an instance of this singleton. If the instance is null, we simply create one.
-     */
-    public static ThemeManager getInstance() {
-        if (instance == null) {
-            instance = new ThemeManager();
-        }
-        return instance;
-    }
-
-    /*
     This loadTheme() method reads the SharedPreferences to see if a theme is already saved. It uses the SP_KEY to
-    identify one. If a saved Theme does not exist, it sets it to our default DarkPurple theme.
-    -
-    This method returns our Theme enumeration, as it is used to load it into the currentTheme member variable.
+    identify one. If a saved Theme does not exist, it sets it to our default DarkPurple theme
+
+    This method returns our Theme enumeration, as it is used to load it into the currentTheme member variable
      */
     private Theme loadTheme() {
-        SharedPreferences sp = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(SP_KEY, Context.MODE_PRIVATE);
         return Theme.valueOf(sp.getString(SP_KEY, DEFAULT_THEME.toString()));
     }
 
     /*
     This saveTheme() method takes a Theme enumeration as an input, and writes it to our SharedPreferences using the
-    SP_KEY string.
+    SP_KEY string
      */
     private void saveTheme(Theme theme) {
-        SharedPreferences sp = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor e = sp.edit();
-        e.putString(SP_KEY, theme.toString()).apply();
+        SharedPreferences sp = context.getSharedPreferences(SP_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(SP_KEY, theme.toString()).apply();
     }
 
     /*
     setCurrentTheme() will be public. It is intended for our CalculatorActivity to call the ThemeManager and write the
-    selected theme to the SharedPreferences, then it will set the instance's currentTheme member varaible to the theme
+    selected theme to the SharedPreferences, then it will set the instance's currentTheme member variable to the theme
     we just wrote to SharedPreferences.
      */
     public void setCurrentTheme(Theme theme) {
@@ -94,32 +90,32 @@ public class ThemeManager extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             switch (currentTheme) {
                 case LIGHT_PURPLE:
-                    return getColor(R.color.lightPurplePrimary);
+                    return context.getColor(R.color.lightPurplePrimary);
                 case LIGHT_NORMAL:
-                    return getColor(R.color.lightNormalPrimary);
+                    return context.getColor(R.color.lightNormalPrimary);
                 case DARK_NORMAL:
-                    return getColor(R.color.darkNormalPrimary);
+                    return context.getColor(R.color.darkNormalPrimary);
                 case LIGHT_RED:
-                    return getColor(R.color.lightRedPrimary);
+                    return context.getColor(R.color.lightRedPrimary);
                 case DARK_RED:
-                    return getColor(R.color.darkRedPrimary);
+                    return context.getColor(R.color.darkRedPrimary);
                 default:
-                    return getColor(R.color.darkPurplePrimary);
+                    return context.getColor(R.color.darkPurplePrimary);
             }
         } else {
             switch (currentTheme) {
                 case LIGHT_PURPLE:
-                    return getResources().getColor(R.color.lightPurplePrimary);
+                    return context.getResources().getColor(R.color.lightPurplePrimary);
                 case LIGHT_NORMAL:
-                    return getResources().getColor(R.color.lightNormalPrimary);
+                    return context.getResources().getColor(R.color.lightNormalPrimary);
                 case DARK_NORMAL:
-                    return getResources().getColor(R.color.darkNormalPrimary);
+                    return context.getResources().getColor(R.color.darkNormalPrimary);
                 case LIGHT_RED:
-                    return getResources().getColor(R.color.lightRedPrimary);
+                    return context.getResources().getColor(R.color.lightRedPrimary);
                 case DARK_RED:
-                    return getResources().getColor(R.color.darkRedPrimary);
+                    return context.getResources().getColor(R.color.darkRedPrimary);
                 default:
-                    return getResources().getColor(R.color.darkPurplePrimary);
+                    return context.getResources().getColor(R.color.darkPurplePrimary);
             }
         }
     }
@@ -131,32 +127,32 @@ public class ThemeManager extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             switch (currentTheme) {
                 case LIGHT_PURPLE:
-                    return getColor(R.color.lightPurpleAccent);
+                    return context.getColor(R.color.lightPurpleAccent);
                 case LIGHT_NORMAL:
-                    return getColor(R.color.lightNormalAccent);
+                    return context.getColor(R.color.lightNormalAccent);
                 case DARK_NORMAL:
-                    return getColor(R.color.darkNormalAccent);
+                    return context.getColor(R.color.darkNormalAccent);
                 case LIGHT_RED:
-                    return getColor(R.color.lightRedAccent);
+                    return context.getColor(R.color.lightRedAccent);
                 case DARK_RED:
-                    return getColor(R.color.darkRedAccent);
+                    return context.getColor(R.color.darkRedAccent);
                 default:
-                    return getColor(R.color.darkPurpleAccent);
+                    return context.getColor(R.color.darkPurpleAccent);
             }
         } else {
             switch (currentTheme) {
                 case LIGHT_PURPLE:
-                    return getResources().getColor(R.color.lightPurpleAccent);
+                    return context.getResources().getColor(R.color.lightPurpleAccent);
                 case LIGHT_NORMAL:
-                    return getResources().getColor(R.color.lightNormalAccent);
+                    return context.getResources().getColor(R.color.lightNormalAccent);
                 case DARK_NORMAL:
-                    return getResources().getColor(R.color.darkNormalAccent);
+                    return context.getResources().getColor(R.color.darkNormalAccent);
                 case LIGHT_RED:
-                    return getResources().getColor(R.color.lightRedAccent);
+                    return context.getResources().getColor(R.color.lightRedAccent);
                 case DARK_RED:
-                    return getResources().getColor(R.color.darkRedAccent);
+                    return context.getResources().getColor(R.color.darkRedAccent);
                 default:
-                    return getResources().getColor(R.color.darkPurpleAccent);
+                    return context.getResources().getColor(R.color.darkPurpleAccent);
             }
         }
     }
