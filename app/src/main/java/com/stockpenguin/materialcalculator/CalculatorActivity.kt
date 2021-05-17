@@ -53,7 +53,7 @@ class CalculatorActivity : AppCompatActivity() {
     program each button to do its own processes as in a previous implementation of this app which led to confusing
     spaghetti code, I was inspired by the way compilers work, as I was learning them while making this app.
     Each button simply appends it's string equivalent to the currentEquation text. When the equal sign is pressed,
-    the text will then be "compiled" to a special postfix notation, and essentially a small equivalent of three address
+    the text will then be "compiled" to postfix notation, and essentially a small equivalent of three address
     code. From there, we can execute one step at a time using PEMDAS in order.
      */
 
@@ -133,6 +133,8 @@ class CalculatorActivity : AppCompatActivity() {
         /* OnClick for Compile Button */
         compileButton.setOnClickListener { processButton(ButtonType.COMPILE_BUTTON) }
 
+        themeManager = ThemeManager(this)
+
         updateUI()
     }
 
@@ -182,7 +184,10 @@ class CalculatorActivity : AppCompatActivity() {
         updateUI()
     }
 
-    private fun compile() {}
+    private fun compile() {
+        currentEquation = Compiler.getInstance().infixToPostfix(currentEquation)
+        updateUI()
+    }
 
     private fun openSettings() {}
 
