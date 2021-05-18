@@ -22,26 +22,41 @@ public class Compiler {
             char c = infix.charAt(i);
 
             if (!isOp(c)) {
-                /* add support for multiple digits */
+                try {
+                    if (isOp(infix.charAt(i-1))) {
+                        postfix.append(' ');
+                    }
+                } catch (IndexOutOfBoundsException ignored) { }
+
                 postfix.append(c);
+                continue;
             } else if (c == '(') {
                 stack.push(c);
             } else if (c == ')') {
                 while (!stack.isEmpty() && stack.peek() != '(') {
+                    postfix.append(' ');
                     postfix.append(stack.pop());
                 }
                 stack.pop();
             } else {
                 while (!stack.isEmpty() && opPrec(c) <= opPrec(stack.peek())) {
+                    postfix.append(' ');
                     postfix.append(stack.pop());
                 }
                 stack.push(c);
             }
+
+            try {
+                if (isOp(infix.charAt(i+1))) {
+                    postfix.append(' ');
+                }
+            } catch (IndexOutOfBoundsException ignored) { }
         }
         while (!stack.isEmpty()) {
             if (stack.peek() == '(') {
                 /* throw syntax error */
             }
+            postfix.append(' ');
             postfix.append(stack.pop());
         }
         return postfix.toString();
