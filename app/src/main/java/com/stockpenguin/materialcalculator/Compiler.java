@@ -14,7 +14,7 @@ public class Compiler {
         return instance;
     }
 
-    public String infixToPostfix(String infix) {
+    public String infixToPostfix(String infix) throws SyntaxError {
         StringBuilder postfix = new StringBuilder();
         Stack<Character> stack = new Stack<>();
 
@@ -54,7 +54,7 @@ public class Compiler {
         }
         while (!stack.isEmpty()) {
             if (stack.peek() == '(') {
-                /* throw syntax error */
+                throw new SyntaxError();
             }
             postfix.append(' ');
             postfix.append(stack.pop());

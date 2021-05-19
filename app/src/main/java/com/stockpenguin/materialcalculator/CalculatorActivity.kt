@@ -1,12 +1,16 @@
 package com.stockpenguin.materialcalculator
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 
 class CalculatorActivity : AppCompatActivity() {
+    /* Member Variables */
+
     /* ThemeManager */
     private lateinit var themeManager: ThemeManager
 
@@ -47,6 +51,7 @@ class CalculatorActivity : AppCompatActivity() {
     /* currentEquation on the screen */
     /* set to 0 by default */
     private var currentEquation = "0"
+    private var currentEquationPostfix: String? = null
 
     /* NOTE:
     Throughout the code, the equal sign button is referred to as the "compile" button. This is because rather than
@@ -142,7 +147,7 @@ class CalculatorActivity : AppCompatActivity() {
         /* if currentEquation is the default String value, just set it to an empty string so the first char will be
         whatever button is pressed
          */
-        if (currentEquation == "0") {
+        if (currentEquation == "0" || currentEquation == SyntaxError.MSG) {
             currentEquation = ""
         }
 
@@ -185,11 +190,18 @@ class CalculatorActivity : AppCompatActivity() {
     }
 
     private fun compile() {
-        currentEquation = Compiler.getInstance().infixToPostfix(currentEquation)
+        currentEquation = try {
+            Compiler.getInstance().infixToPostfix(currentEquation)
+        } catch (e: SyntaxError) {
+            SyntaxError.MSG
+        }
         updateUI()
     }
 
-    private fun openSettings() {}
+    private fun openSettings() {
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun updateUI() {
         calculatorTextView.text = currentEquation
