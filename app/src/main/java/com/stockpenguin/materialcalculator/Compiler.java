@@ -1,5 +1,7 @@
 package com.stockpenguin.materialcalculator;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /*
@@ -81,6 +83,70 @@ public class Compiler {
             postfix.append(stack.pop());
         }
         return postfix.toString();
+    }
+
+    public String solve(String infix) throws SyntaxError {
+        String postfix = infixToPostfix(infix);
+
+        if (isOp(postfix.charAt(0))) throw new SyntaxError();
+
+        /* create LinkedList of tokens to solve later */
+        List<String> tokens = new LinkedList<>();
+
+        for (int i = 0; i < postfix.length(); i++) {
+            char c = postfix.charAt(i);
+            StringBuilder currentToken = new StringBuilder(c);
+
+            if (isOp(c) || c == ' ') {
+                tokens.add(String.valueOf(c));
+                continue;
+            }
+
+            while ((i+1) < postfix.length()) {
+                char temp = postfix.charAt(i);
+                if (!isOp(temp) && temp != ' ') {
+                    currentToken.append(temp);
+                    i++;
+                } else {
+                    break;
+                }
+            }
+
+            tokens.add(currentToken.toString());
+        }
+
+        Stack<String> stack = new Stack<>();
+
+        for (String token : tokens) {
+            char c = token.charAt(0);
+
+            if (!isOp(c) && c != ' ') {
+                stack.push(token);
+            } else if (isOp(c)) {
+                double x = Double.parseDouble(stack.pop());
+                double y = Double.parseDouble(stack.pop());
+                double result;
+
+                switch (c) {
+                    case '+':
+                        result = y + x;
+                        break;
+                    case '-':
+                        result = y - x;
+                        break;
+                    case '*':
+                        result = y * x;
+                        break;
+                    case '/':
+                        result = y / x;
+                        break;
+                    default:
+                        throw new SyntaxError();
+                }
+                stack.push(String.valueOf(result));
+            }
+        }
+        return stack.pop();
     }
 
     /* checks if a character is an operator */

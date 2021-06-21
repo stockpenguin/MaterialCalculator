@@ -8,14 +8,22 @@
         android:layout_height="match_parent"
         tools:context=".CalculatorActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/calculatorTextView_CalculatorActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="end"
         android:layout_margin="16dp"
         android:textColor="@color/white"
         android:textSize="75sp"
-        android:gravity="end|center"
+        android:singleLine="true"
+        android:scrollHorizontally="true"
+
+        android:background="@android:color/transparent"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +52,7 @@
 
         <Button
             android:id="@+id/buttonNegate_CalculatorActivity"
-            android:layout_width="75dp"
+            android:layout_width="70dp"
             android:layout_height="75dp"
             android:text="@string/negate"
             android:textSize="40sp"
@@ -127,17 +135,16 @@
             app:layout_constraintBottom_toTopOf="@id/buttonSubtract_CalculatorActivity"/>
 
         <Button
-            android:id="@+id/buttonFour_CalculatorActivity"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:text="@string/four"
-            android:textSize="40sp"
-            android:background="@drawable/button_calculator_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/buttonFive_CalculatorActivity"
-            app:layout_constraintTop_toBottomOf="@id/buttonSeven_CalculatorActivity"
-            app:layout_constraintBottom_toTopOf="@id/buttonOne_CalculatorActivity"/>
-
+                android:id="@+id/buttonFour_CalculatorActivity"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:text="@string/four"
+                android:textSize="40sp"
+                android:background="@drawable/button_calculator_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/buttonFive_CalculatorActivity"
+                app:layout_constraintTop_toBottomOf="@id/buttonSeven_CalculatorActivity"
+                app:layout_constraintBottom_toTopOf="@id/buttonOne_CalculatorActivity"/>
         <Button
             android:id="@+id/buttonFive_CalculatorActivity"
             android:layout_width="75dp"
@@ -250,7 +257,7 @@
             android:id="@+id/buttonSettings_CalculatorActivity"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:text="@string/settings"
+            android:text="@string/settings_icon"
             android:textSize="40sp"
             android:background="@drawable/button_calculator_button"
             app:layout_constraintStart_toEndOf="@id/buttonDecimal_CalculatorActivity"

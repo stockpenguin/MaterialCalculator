@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "622604329464",
+    "project_id": "material-calculator-1eb50",
+    "storage_bucket": "material-calculator-1eb50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622604329464:android:14fb39945431778be3b60d",
+        "android_client_info": {
+          "package_name": "com.stockpenguin.materialcalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622604329464-mdfajn4r952a9555k2pttu824ba9fs2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz9oqPdOq1DIuGShKaqGFdijq5eJli71I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622604329464-mdfajn4r952a9555k2pttu824ba9fs2t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

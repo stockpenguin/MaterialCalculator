@@ -2,6 +2,7 @@ package com.stockpenguin.materialcalculator;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,6 +46,11 @@ public class ThemeManager {
         currentTheme = loadTheme();
     }
 
+    /* called so activities can see if another activity changed the theme */
+    public void update() {
+        currentTheme = loadTheme();
+    }
+
     /*
     This loadTheme() method reads the SharedPreferences to see if a theme is already saved. It uses the SP_KEY to
     identify one. If a saved Theme does not exist, it sets it to our default DarkPurple theme
@@ -76,17 +82,21 @@ public class ThemeManager {
         currentTheme = theme;
     }
 
+    public Theme getCurrentTheme() {
+        return currentTheme;
+    }
+
     /*
     getCurrentThemePrimary() is another public method intended for the CalculatorActivity class to call. This method
     simply allows us to take the currentTheme enumeration and return the actual PRIMARY color that is saved in our
     colors.xml file.
     -
-    Since this app will have support all the way back to Android Jellybean, we have two different ways to return the
+    Since this app will have support all the way back to Android Lollipop, we have two different ways to return the
     int value of our color. If the version is Build.VERSION_CODES.M, which is Android 6.0 Marshmallow, we will use the
     getColor() method to return it. If the version is under Android 6.0, we will use getResources().getColor(), which
     is deprecated above Android 6.0, but necessary for the past versions.
      */
-    public int getCurrentThemePrimary() {
+    public int getCurrentThemePrimaryColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             switch (currentTheme) {
                 case LIGHT_PURPLE:
@@ -123,7 +133,7 @@ public class ThemeManager {
     /*
     same as getCurrentThemePrimary() except for the accent colors of the themes.
      */
-    public int getCurrentThemeAccent() {
+    public int getCurrentThemeAccentColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             switch (currentTheme) {
                 case LIGHT_PURPLE:
@@ -153,6 +163,120 @@ public class ThemeManager {
                     return context.getResources().getColor(R.color.darkRedAccent);
                 default:
                     return context.getResources().getColor(R.color.darkPurpleAccent);
+            }
+        }
+    }
+
+    public Drawable getCurrentThemeOperatorBackgroundColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            switch (currentTheme) {
+                case LIGHT_PURPLE:
+                    return context.getDrawable(R.drawable.button_calculator_button_white);
+                case DARK_PURPLE:
+                    return context.getDrawable(R.drawable.button_calculator_button_white);
+                case LIGHT_NORMAL:
+                    return context.getDrawable(R.drawable.button_calculator_button_black);
+                case DARK_NORMAL:
+                    return context.getDrawable(R.drawable.button_calculator_button_white);
+                case LIGHT_RED:
+                    return context.getDrawable(R.drawable.button_calculator_button_white);
+                case DARK_RED:
+                    return context.getDrawable(R.drawable.button_calculator_button_white);
+                default:
+                    return context.getDrawable(R.drawable.button_calculator_button);
+            }
+        } else {
+            switch (currentTheme) {
+                case LIGHT_PURPLE:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button_white);
+                case DARK_PURPLE:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button_white);
+                case LIGHT_NORMAL:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button_black);
+                case DARK_NORMAL:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button_white);
+                case LIGHT_RED:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button_white);
+                case DARK_RED:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button_white);
+                default:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button);
+            }
+        }
+    }
+
+    public Drawable getCurrentThemeCompileButtonBackgroundColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            switch (currentTheme) {
+                case LIGHT_PURPLE:
+                    return context.getDrawable(R.drawable.button_calculator_darkpurple);
+                case DARK_PURPLE:
+                    return context.getDrawable(R.drawable.button_calculator_lightpurple);
+                case LIGHT_NORMAL:
+                    return context.getDrawable(R.drawable.button_calculator_button_black);
+                case DARK_NORMAL:
+                    return context.getDrawable(R.drawable.button_calculator_button_white);
+                case LIGHT_RED:
+                    return context.getDrawable(R.drawable.button_calculator_darkred);
+                case DARK_RED:
+                    return context.getDrawable(R.drawable.button_calculator_lightred);
+                default:
+                    return context.getDrawable(R.drawable.button_calculator_button);
+            }
+        } else {
+            switch (currentTheme) {
+                case LIGHT_PURPLE:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_darkpurple);
+                case DARK_PURPLE:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_lightpurple);
+                case LIGHT_NORMAL:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button_black);
+                case DARK_NORMAL:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button_white);
+                case LIGHT_RED:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_darkred);
+                case DARK_RED:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_lightred);
+                default:
+                    return context.getResources().getDrawable(R.drawable.button_calculator_button);
+            }
+        }
+    }
+
+    public int getCurrentThemeNumberTextColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            switch (currentTheme) {
+                case LIGHT_PURPLE:
+                    return context.getColor(R.color.white);
+                case DARK_PURPLE:
+                    return context.getColor(R.color.white);
+                case LIGHT_NORMAL:
+                    return context.getColor(R.color.black);
+                case DARK_NORMAL:
+                    return context.getColor(R.color.white);
+                case LIGHT_RED:
+                    return context.getColor(R.color.white);
+                case DARK_RED:
+                    return context.getColor(R.color.white);
+                default:
+                    return -1;
+            }
+        } else {
+            switch (currentTheme) {
+                case LIGHT_PURPLE:
+                    return context.getResources().getColor(R.color.white);
+                case DARK_PURPLE:
+                    return context.getResources().getColor(R.color.white);
+                case LIGHT_NORMAL:
+                    return context.getResources().getColor(R.color.black);
+                case DARK_NORMAL:
+                    return context.getResources().getColor(R.color.white);
+                case LIGHT_RED:
+                    return context.getResources().getColor(R.color.white);
+                case DARK_RED:
+                    return context.getResources().getColor(R.color.white);
+                default:
+                    return -1;
             }
         }
     }

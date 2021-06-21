@@ -8,4 +8,254 @@
         android:layout_height="match_parent"
         tools:context=".SettingsActivity">
 
+    <Toolbar
+        android:id="@+id/toolbar_SettingsActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/settings"
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+
+    </Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/themesCardView_SettingsActivity"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="32dp"
+        app:cardCornerRadius="16dp"
+        android:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_SettingsActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/themes"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/lightPurpleCardView_SettingsActivity"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="32dp"
+            app:cardCornerRadius="16dp"
+            android:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/themesCardView_SettingsActivity">
+
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/lightPurpleRadioButton_SettingsActivity"
+                     android:layout_gravity="start|center"
+                     android:layout_marginHorizontal="16dp"
+                     android:text=""/>
+
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:id="@+id/lightPurpleLockImage_SettingsActivity"
+                   android:elevation="2dp"
+                   android:src="@drawable/ic_baseline_block_24"
+                   android:layout_gravity="start|center"
+                   android:layout_marginHorizontal="16dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lightPurple"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/darkPurpleCardView_SettingsActivity"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="32dp"
+            app:cardCornerRadius="16dp"
+            android:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lightPurpleCardView_SettingsActivity">
+
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/darkPurpleRadioButton_SettingsActivity"
+                     android:layout_gravity="start|center"
+                     android:layout_marginHorizontal="16dp"
+                     android:text=""/>
+
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:id="@+id/darkPurpleLockImage_SettingsActivity"
+                   android:elevation="2dp"
+                   android:src="@drawable/ic_baseline_block_24"
+                   android:layout_gravity="start|center"
+                   android:layout_marginHorizontal="16dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/darkPurple"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/lightNormalCardView_SettingsActivity"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="32dp"
+            app:cardCornerRadius="16dp"
+            android:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/darkPurpleCardView_SettingsActivity">
+
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/lightNormalRadioButton_SettingsActivity"
+                     android:layout_gravity="start|center"
+                     android:layout_marginHorizontal="16dp"
+                     android:text=""/>
+
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:id="@+id/lightNormalLockImage_SettingsActivity"
+                   android:elevation="2dp"
+                   android:src="@drawable/ic_baseline_block_24"
+                   android:layout_gravity="start|center"
+                   android:layout_marginHorizontal="16dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lightNormal"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/darkNormalCardView_SettingsActivity"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="32dp"
+            app:cardCornerRadius="16dp"
+            android:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lightNormalCardView_SettingsActivity">
+
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/darkNormalRadioButton_SettingsActivity"
+                     android:layout_gravity="start|center"
+                     android:layout_marginHorizontal="16dp"
+                     android:text=""/>
+
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:id="@+id/darkNormalLockImage_SettingsActivity"
+                   android:elevation="2dp"
+                   android:src="@drawable/ic_baseline_block_24"
+                   android:layout_gravity="start|center"
+                   android:layout_marginHorizontal="16dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/darkNormal"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/lightRedCardView_SettingsActivity"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="32dp"
+            app:cardCornerRadius="16dp"
+            android:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/darkNormalCardView_SettingsActivity">
+
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/lightRedRadioButton_SettingsActivity"
+                     android:layout_gravity="start|center"
+                     android:layout_marginHorizontal="16dp"
+                     android:text=""/>
+
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:id="@+id/lightRedLockImage_SettingsActivity"
+                   android:elevation="2dp"
+                   android:src="@drawable/ic_baseline_block_24"
+                   android:layout_gravity="start|center"
+                   android:layout_marginHorizontal="16dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lightRed"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/darkRedCardView_SettingsActivity"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="32dp"
+            app:cardCornerRadius="16dp"
+            android:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lightRedCardView_SettingsActivity">
+
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     android:id="@+id/darkRedRadioButton_SettingsActivity"
+                     android:layout_gravity="start|center"
+                     android:layout_marginHorizontal="16dp"
+                     android:text=""/>
+
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:id="@+id/darkRedLockImage_SettingsActivity"
+                   android:elevation="2dp"
+                   android:src="@drawable/ic_baseline_block_24"
+                   android:layout_gravity="start|center"
+                   android:layout_marginHorizontal="16dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/darkRed"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
